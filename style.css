@@ -17,7 +17,14 @@ img {
 
 /*================ Variables ====================== */
 :root {
+    
     --header-height: 4.5rem;
+    
+    --title-font-size: 1.875rem;
+    --subtitle-font-size: 1rem;
+    --title-font: "Poppins", sans-serif;
+    --body-font: "DM Sans", sans-serif;
+   
     --hue: 250;
     --base-color: hsl(var(--hue) 36% 57%);
     --base-color-second: hsl(var(--hue) 65% 88%);
@@ -33,13 +40,13 @@ html {
     scroll-behavior: smooth;
 }
 body {
-    font: 400 1rem "DM Sans", sans-serif;
+    font: 400 1rem var(--body-font);
     color: var(--text-color);
     background: var(--body-color);
     -webkit-font-smoothing: antialiased;
 }
 .title {
-    font: 700 1.875rem "Poppins", sans-serif;
+    font: 700 var(--title-font-size) var(--title-font);
     color: var(--title-color);
     -webkit-font-smoothing: auto;
 }
@@ -52,7 +59,7 @@ body {
     align-items: center;
     padding: 0 2rem;
     border-radius: 0.25rem;
-    font: 500 1rem "DM Sans", sans-serif;
+    font: 500 1rem var(--body-font);
     transition: background 0.3s;
 }
 .button:hover {
@@ -82,6 +89,9 @@ body {
 .section .title {
     margin-bottom: 1rem;
 }
+.section .subtitle {
+    font-size: var(--subtitle-font-size);
+}
 .section header {
     margin-bottom: 4rem;
 }
@@ -102,16 +112,13 @@ body {
 #header.scroll {
     box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.15);
 }
-main {
-    margin-top: calc(var(--header-height) + 2rem);
-}
 
 /*================ Logo ====================== */
 .logo span {
     color: var(--base-color);
 }
 .logo {
-    font: 700 1.875rem "Poppins", sans-serif;
+    font: 700 1.875rem var(--title-font);
     color: var(--title-color);
 }
 .logo-alt span {
@@ -133,7 +140,8 @@ nav ul li a {
     transition: 0.3s;
     position: relative;
 }
-nav ul li a:hover {
+nav ul li a:hover, 
+nav ul li a.active {
     color: var(--base-color);
 }
 nav ul li a::after {
@@ -146,8 +154,10 @@ nav ul li a::after {
     bottom: -1.5rem;
     transition: width 0.3s;
 }
-nav ul li a:hover::after {
+nav ul li a:hover::after,
+nav ul li a.active::after {
    width: 100%;
+   
 }
 nav .menu {
     opacity: 0;
@@ -414,4 +424,110 @@ footer i {
     visibility: visible;
     opacity: 1;
     transform: translate(0);
+}
+
+/*================ Responsivit ====================== */
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1120px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .section {
+        padding: 10rem 0;   
+    }
+    .section header,
+    #testimonials header {
+        max-width: 32rem;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .button {
+        height: 3.125rem;
+    }
+    /*  Navigation  */
+    nav .menu {
+        opacity: 1;
+        visibility: visible;
+        top: 0;
+    }
+    nav .menu ul { 
+        display: flex;
+        gap: 2rem;
+    }
+    nav .menu ul a.title {
+        font: 400 1rem var(--body-font);
+        -webkit-font-smoothing: antialiased;
+    }
+    nav .menu ul li a.title.active {
+        font-weight: bold;
+        -webkit-font-smoothing: auto;
+    }
+    nav .icon-menu {
+        display: none;
+    }
+    main {
+        margin-top: var(--header-height);
+    }
+    /*  home  */
+    #home .container {
+        grid-auto-flow: column;
+        justify-content: space-between;
+        margin: 0 auto;
+    }
+    #home .image {
+        order: 1;
+    }
+    #home .text {
+        order: 0;
+        max-width: 24rem;
+        text-align: left;
+    }
+    /*   about   */
+    #about .container {
+        margin: 0 auto;
+        grid-auto-flow: column;
+    }
+    /*   Services   */
+    .cards {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .card {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+    /*   Testimonials   */
+    #testimonials .container {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    /*   contact   */
+    #contact .container {
+        grid-auto-flow: column;
+        align-items: center;
+    }
+    #contact .text {
+        max-width: 25rem;
+    }
+    /*   footer   */
+    footer.section {
+        padding: 3.75rem 0;
+    }
+    footer .container {
+        grid-auto-flow: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+    footer .logo {
+        font-size: 2.25rem;
+    }
+}
+
+@media (min-width: 992px) {
+    :root {
+        --title-font-size: 2.25rem;
+        --subtitle-font-size: 1.125rem;
+    }
 }
